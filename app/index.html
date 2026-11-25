@@ -217,8 +217,8 @@ header{background:#000000;flex:none;position:relative;z-index:3;padding-top:var(
 .popdim{position:absolute;inset:0;z-index:8;display:none}
 .popdim.on{display:block}
 /* settings */
-#set,#mview{z-index:6;transform:translateX(100%);transition:transform .25s ease,visibility 0s .25s;display:block;visibility:hidden}
-#set.on,#mview.on{transform:none;visibility:visible;transition:transform .25s ease}
+#set,#mview,#pview{z-index:6;transform:translateX(100%);transition:transform .25s ease,visibility 0s .25s;display:block;visibility:hidden}
+#set.on,#mview.on,#pview.on{transform:none;visibility:visible;transition:transform .25s ease}
 .back{position:absolute;left:calc(var(--u)*8);top:50%;transform:translateY(-50%);color:#7fb2ff;font-size:calc(var(--u)*17);display:flex;align-items:center;gap:4px;min-height:44px;padding:0 8px}
 .back svg{width:11px;height:18px;fill:none;stroke:#7fb2ff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .lbl{margin:calc(var(--u)*22) calc(var(--u)*32) calc(var(--u)*7);font-size:calc(var(--u)*12.7);color:#8d9096}
@@ -242,6 +242,38 @@ input,textarea{-webkit-user-select:text;user-select:text}
 .own .t{flex:1;min-width:0}.own .t b,.own .t span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .own .t b{font-weight:500;font-size:calc(var(--u)*15.5);color:#eef0f3}.own .t span{font-size:calc(var(--u)*13.5);color:#9a9ea6}
 .own button{flex:none;color:#ff6b7f;font-size:calc(var(--u)*14.5);padding:calc(var(--u)*8)}
+.prow{display:flex;align-items:center;justify-content:space-between;gap:calc(var(--u)*10);min-height:calc(var(--u)*56);padding:calc(var(--u)*9) calc(var(--u)*18);position:relative}
+.prow+.prow::before{content:"";position:absolute;top:0;left:calc(var(--u)*18);right:0;height:1px;background:#2f3034}
+.prow .t{flex:1;min-width:0}.prow .t b{display:block;font-weight:500;font-size:calc(var(--u)*16);color:#eef0f3}
+.prow .t span{display:block;font-size:calc(var(--u)*13.5);color:#9a9ea6;margin-top:2px}
+.prow .r{flex:none;font-size:calc(var(--u)*14);color:#b5bac2;text-align:right}
+.chipok,.chipno{display:inline-block;border-radius:calc(var(--u)*9);padding:calc(var(--u)*2) calc(var(--u)*9);font-size:calc(var(--u)*12.5)}
+.chipok{background:#2f6b52;color:#c9f2df}.chipno{background:#7a2333;color:#ffd3db}
+.ptext{padding:0 calc(var(--u)*24);font-size:calc(var(--u)*15.5);line-height:1.5;color:#d8dce1}
+.ptext h3{font-size:calc(var(--u)*17);color:#eef0f3;margin:calc(var(--u)*20) 0 calc(var(--u)*6)}
+.btnrow{display:flex;gap:calc(var(--u)*10);margin:calc(var(--u)*20) calc(var(--u)*16.7) 0}
+.btnrow .save{margin:0;flex:1;width:auto}
+.hwl{padding:calc(var(--u)*4) calc(var(--u)*16.7) calc(var(--u)*16)}
+.hwi{display:flex;gap:calc(var(--u)*10);align-items:flex-start;padding:calc(var(--u)*10) 0;border-bottom:1px solid #2f343b;font-size:calc(var(--u)*15.5);color:#e1e4e8}
+.hwi span{flex:1;white-space:pre-wrap;word-break:break-word}.hwi button{color:#ff6b7f;font-size:calc(var(--u)*14)}
+.hwadd{display:flex;gap:calc(var(--u)*8);margin-top:calc(var(--u)*10)}
+.hwadd input{flex:1;min-width:0;height:44px;border-radius:calc(var(--u)*10);border:0;background:#333c46;color:#fff;font-size:16px;padding:0 10px;outline:none}
+.hwadd button{flex:none;background:#3d7bf0;color:#fff;border-radius:calc(var(--u)*10);padding:0 14px;font-size:calc(var(--u)*15)}
+#dlg{position:absolute;inset:0;z-index:30;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center}
+#dlg.on{display:flex}
+#dlg .b{width:calc(var(--u)*270);background:#2c2c2e;border-radius:calc(var(--u)*14);text-align:center;overflow:hidden}
+#dlg h4{font-size:calc(var(--u)*17);padding:calc(var(--u)*18) calc(var(--u)*16) calc(var(--u)*4)}
+#dlg p{font-size:calc(var(--u)*13.5);color:#c9ccd1;padding:0 calc(var(--u)*16) calc(var(--u)*16)}
+#dlg .bs{display:flex;border-top:1px solid #444}
+#dlg .bs button{flex:1;height:calc(var(--u)*44);font-size:calc(var(--u)*17);color:#4a9bff}
+#dlg .bs button+button{border-left:1px solid #444;color:#ff453a;font-weight:600}
+#login{position:absolute;inset:0;z-index:40;background:#000;display:none;flex-direction:column;align-items:center;padding:calc(var(--top) + calc(var(--u)*90)) calc(var(--u)*24) 0}
+#login.on{display:flex}
+#login h1{font-size:calc(var(--u)*30);font-weight:700;margin-bottom:calc(var(--u)*6)}
+#login .sc{color:#9a9ea6;font-size:calc(var(--u)*15);margin-bottom:calc(var(--u)*36)}
+#login input{width:100%;height:50px;border-radius:calc(var(--u)*12);border:0;background:#1c1c1e;color:#fff;font-size:16px;padding:0 14px;outline:none;margin-bottom:calc(var(--u)*12)}
+#login .save{width:100%;margin:calc(var(--u)*12) 0 0;opacity:.45}
+#login .save.ok{opacity:1}
 .hint{margin:calc(var(--u)*8) calc(var(--u)*32);font-size:calc(var(--u)*12.7);color:#7b7e85}
 .save{display:block;margin:calc(var(--u)*24) calc(var(--u)*16.7) 0;width:calc(100% - calc(var(--u)*33.4));min-height:50px;border-radius:calc(var(--u)*26);background:#3d7bf0;color:#fff;font-size:calc(var(--u)*16.5);font-weight:600}
 .save.sec{background:#1c1c1e;color:#ff6b7f;margin-top:calc(var(--u)*12)}
@@ -302,13 +334,13 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
     </div></div>
     <div class="gap"></div>
     <div class="card">
-      <button class="item" data-act="x"><div class="ico"><svg viewBox="0 0 26 26"><path d="M5 22.5h-.5A1.5 1.5 0 013 21V4.5A1.5 1.5 0 014.5 3h11A1.5 1.5 0 0117 4.5V12M6.5 7.5h7M6.5 11h7M6.5 14.5h3"/><path d="M12 18.5l6-3 6 3-6 3zM14.5 19.7v2.6c0 .8 1.6 1.7 3.5 1.7s3.5-.9 3.5-1.7v-2.6"/></svg></div><span>Meine Termine</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
-      <button class="item" data-act="x"><div class="ico"><svg viewBox="0 0 26 26"><circle cx="7" cy="8" r="3"/><path d="M2.5 22v-5.5A3.5 3.5 0 016 13h2a3.5 3.5 0 013.5 3.5V18M4.5 22v2.5M9.5 18v6.5"/><rect x="13" y="2.5" width="11" height="10" rx="2"/><circle cx="18.5" cy="7.5" r="3"/><path d="M18.5 6v1.6l1 .8M15 12.5l-2 3v-3"/></svg></div><span>Sprechstunden</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
-      <button class="item" data-act="x"><div class="ico"><svg viewBox="0 0 26 26"><rect x="2.5" y="4" width="17" height="16" rx="2"/><path d="M2.5 8.5h17M7 2v4M15 2v4"/><circle cx="19" cy="19" r="5" fill="#1c1c1e"/><path d="M19 18v3.5M19 16.2v.1"/></svg></div><span>Meine Abwesenheiten</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
+      <button class="item" data-act="termine"><div class="ico"><svg viewBox="0 0 26 26"><path d="M5 22.5h-.5A1.5 1.5 0 013 21V4.5A1.5 1.5 0 014.5 3h11A1.5 1.5 0 0117 4.5V12M6.5 7.5h7M6.5 11h7M6.5 14.5h3"/><path d="M12 18.5l6-3 6 3-6 3zM14.5 19.7v2.6c0 .8 1.6 1.7 3.5 1.7s3.5-.9 3.5-1.7v-2.6"/></svg></div><span>Meine Termine</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
+      <button class="item" data-act="sprech"><div class="ico"><svg viewBox="0 0 26 26"><circle cx="7" cy="8" r="3"/><path d="M2.5 22v-5.5A3.5 3.5 0 016 13h2a3.5 3.5 0 013.5 3.5V18M4.5 22v2.5M9.5 18v6.5"/><rect x="13" y="2.5" width="11" height="10" rx="2"/><circle cx="18.5" cy="7.5" r="3"/><path d="M18.5 6v1.6l1 .8M15 12.5l-2 3v-3"/></svg></div><span>Sprechstunden</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
+      <button class="item" data-act="abw"><div class="ico"><svg viewBox="0 0 26 26"><rect x="2.5" y="4" width="17" height="16" rx="2"/><path d="M2.5 8.5h17M7 2v4M15 2v4"/><circle cx="19" cy="19" r="5" fill="#1c1c1e"/><path d="M19 18v3.5M19 16.2v.1"/></svg></div><span>Meine Abwesenheiten</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
     </div>
     <div class="gap"></div>
     <div class="card">
-      <button class="item" data-act="x"><div class="ico"><svg viewBox="0 0 26 26"><path d="M5 4.5l13.5 2.5v16L5 20.5z" fill="#8a9099" fill-opacity=".55"/><path d="M18.5 7l2-.5v16l-2 .5"/></svg></div><span>Schuljahreskalender</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
+      <button class="item" data-act="kal"><div class="ico"><svg viewBox="0 0 26 26"><path d="M5 4.5l13.5 2.5v16L5 20.5z" fill="#8a9099" fill-opacity=".55"/><path d="M18.5 7l2-.5v16l-2 .5"/></svg></div><span>Schuljahreskalender</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
     </div>
   </div>
 
@@ -329,6 +361,11 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
     <div class="mv" id="mvc"></div>
   </div>
 
+  <div class="view" id="pview">
+    <div class="vt"><button class="back" id="pback"><svg viewBox="0 0 11 18"><path d="M9 2L2 9l7 7"/></svg><span id="pbackt">Start</span></button><span id="ptitle"></span></div>
+    <div id="pbody"></div>
+  </div>
+
   <!-- ============ PROFIL ============ -->
   <div class="view" id="vprof">
     <div class="vt nm">Levkov Matteo</div>
@@ -337,7 +374,7 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
     <div class="gap"></div>
     <div class="card">
       <button class="item" data-act="contact"><div class="ico"><svg viewBox="0 0 26 26"><rect x="2" y="3" width="20" height="17" rx="2"/><path d="M2 7.5h20M5 11h2M9 11h5M5 14.5h2M9 14.5h3"/><circle cx="19" cy="16" r="3"/><path d="M14 25c0-3 2.2-5 5-5s5 2 5 5z"/></svg></div><span>Kontaktdaten</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
-      <button class="item" data-act="x"><div class="ico"><svg viewBox="0 0 26 26"><path d="M7 10V7a5 5 0 0110 0v3"/><rect x="4.5" y="10" width="15" height="13" rx="1.5"/><path d="M9.5 14v6M7.5 18l2 2 2-2M14.5 20v-6M12.5 16l2-2 2 2"/></svg></div><span>Passwort ändern</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
+      <button class="item" data-act="pw"><div class="ico"><svg viewBox="0 0 26 26"><path d="M7 10V7a5 5 0 0110 0v3"/><rect x="4.5" y="10" width="15" height="13" rx="1.5"/><path d="M9.5 14v6M7.5 18l2 2 2-2M14.5 20v-6M12.5 16l2-2 2 2"/></svg></div><span>Passwort ändern</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
     </div>
     <div class="gap"></div>
     <div class="card">
@@ -347,7 +384,7 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
     </div>
     <div class="gap"></div>
     <div class="card">
-      <button class="item" data-act="x"><div class="ico"><svg viewBox="0 0 26 26"><path d="M3 3.5l8-1.5v22l-8-1.5zM11 4h5v5M16 17v5h-5M14 13h10M20.5 9.5L24 13l-3.5 3.5"/><circle cx="8.5" cy="13" r=".6" fill="#8a9099"/></svg></div><span>Abmelden</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
+      <button class="item" data-act="logout"><div class="ico"><svg viewBox="0 0 26 26"><path d="M3 3.5l8-1.5v22l-8-1.5zM11 4h5v5M16 17v5h-5M14 13h10M20.5 9.5L24 13l-3.5 3.5"/><circle cx="8.5" cy="13" r=".6" fill="#8a9099"/></svg></div><span>Abmelden</span><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
     </div>
   </div>
 
@@ -370,6 +407,16 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
       <div class="fld"><label class="wl" for="cRemove">Blöcke entfernen</label><input type="checkbox" class="sw" id="cRemove"></div>
     </div>
     <div class="hint">Bearbeiten über ⋮ oben rechts in den Stunden-Details. Wenn aus, sind diese Optionen ausgeblendet. Bisherige Änderungen bleiben sichtbar.</div>
+    <div class="lbl">Abwesenheit eintragen</div>
+    <div class="card">
+      <div class="fld"><label for="aF">Von</label><input id="aF" type="date"></div>
+      <div class="fld"><label for="aT">Bis</label><input id="aT" type="date"></div>
+      <div class="fld"><label for="aR">Grund</label><input id="aR" autocomplete="off" placeholder="z.B. Krankheit"></div>
+      <div class="fld"><label class="wl" for="aE">Entschuldigt</label><input type="checkbox" class="sw" id="aE" checked></div>
+    </div>
+    <div class="hint">Erscheint unter Start → Meine Abwesenheiten. „Bis“ leer lassen = nur ein Tag.</div>
+    <button class="save" id="aAdd">Abwesenheit hinzufügen</button>
+    <div id="absWrap"></div>
     <div class="lbl">Mitteilung von Lehrer*in</div>
     <div class="card">
       <div class="fld"><label for="nT">Von</label><select id="nT"></select></div>
@@ -383,6 +430,14 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
     <div id="ownWrap"></div>
     <button class="save sec" id="resetAll">Alle Stunden-Änderungen zurücksetzen</button>
     <button class="save sec" id="resetName" style="color:#cfd2d7">Name auf Standard zurücksetzen</button>
+  </div>
+
+  <div id="dlg"><div class="b"><h4 id="dlgh"></h4><p id="dlgp"></p><div class="bs"><button id="dlgno">Abbrechen</button><button id="dlgyes">OK</button></div></div></div>
+  <div id="login">
+    <h1>Anmelden</h1><div class="sc school">GE Faldera Neumünster</div>
+    <input id="lgU" placeholder="Benutzername" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <input id="lgP" type="password" placeholder="Passwort" autocomplete="off">
+    <button class="save" id="lgGo">Anmelden</button>
   </div>
 
   <!-- ============ NAV ============ -->
@@ -405,6 +460,7 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
     <div class="cline" id="lline"></div>
     <div class="lb" id="lbody"></div>
     <button class="hw" id="lhw"><svg class="i" viewBox="0 0 26 26"><path d="M5 22.5h-.5A1.5 1.5 0 013 21V4.5A1.5 1.5 0 014.5 3h11A1.5 1.5 0 0117 4.5V12M6.5 7.5h7M6.5 11h7M6.5 14.5h3"/><path d="M12 18.5l6-3 6 3-6 3zM14.5 19.7v2.6c0 .8 1.6 1.7 3.5 1.7s3.5-.9 3.5-1.7v-2.6"/></svg><span>Hausaufgaben</span><i class="n" id="lhwn">0</i><svg class="chev" viewBox="0 0 9 15"><path d="M1.5 1.5l6 6-6 6"/></svg></button>
+    <div class="hwl" id="lhwl" hidden></div>
   </div>
   <div class="sheet" id="csheet">
     <div class="sh-top">
@@ -520,6 +576,7 @@ const mix = c => `color-mix(in srgb, ${c} 60%, #343a44)`;
 
 /* ---------- state ---------- */
 let OV = store.get('sp_ov',{});
+let HW = store.get('sp_hw',{});   /* homework you wrote yourself, per lesson */
 const saveOV = () => store.set('sp_ov',OV);
 let CFG = Object.assign({cancel:true,remove:true}, store.get('sp_cfg',{}));
 let NV = store.get('sp_view',5);
@@ -570,7 +627,8 @@ function paneHTML(days, now){
       const top = Y(l.s)+(MID.has(l.s)?1.3:0), bot = Y(l.e)-(MID.has(l.e)?1.3:0);
       const c = COL[l.su]||'#999';
       const lines = NV<=2 ? [teacherHTML(l.t), SUBTXT[l.su]||l.su, l.r||l.rr, (l.cls||[]).join(', ')] : [teacherHTML(l.t), SUBTXT[l.su]||l.su, l.r, l.k];
-      const ic = (l.ic||[]).map(k=>k==='kebabG'?`<span class="g">${ICON.kebab}</span>`:`<span>${ICON[k]}</span>`).join('');
+      const icl = [...(l.ic||[])]; if((HW[keyOf(dt,l0)]||[]).length && !icl.includes(H)) icl.unshift(H);
+      const ic = icl.map(k=>k==='kebabG'?`<span class="g">${ICON.kebab}</span>`:`<span>${ICON[k]}</span>`).join('');
       h += `<div class="les ${fut?'fut':''} ${l.st||''}" data-i="${shown.length}" style="left:${U(colX(i))};top:${U(top)};width:${U(narrow?CW-SW-2.3:CW)};height:${U(bot-top)}">
         <i class="bar" style="background:${fut?c:mix(c)}"></i><div class="tx">${lines.filter(Boolean).map(x=>`<div>${x}</div>`).join('')}</div>${ic?`<div class="ic">${ic}</div>`:''}</div>`;
       shown.push({l0,dt});
@@ -735,7 +793,7 @@ $('pmenu').addEventListener('click', e=>{
   if(b.dataset.v){ const v = +b.dataset.v; const ref = start; NV = v; store.set('sp_view',NV); start = v===5 ? mondayOf(ref) : nextSchoolDay(ref); closePops(); render(); return; }
   if(b.dataset.m==='goto'){ closePops(); const inp = $('gotoDate'); inp.value = iso(start); try{ inp.showPicker(); }catch(err){ inp.focus(); inp.click(); } return; }
   if(b.dataset.m==='cal'){ calOn = !calOn; store.set('sp_cal',calOn); syncMenu(); return; }
-  if(b.dataset.m==='help'){ closePops(); toast('Hilfe ist hier nicht verfügbar'); }
+  if(b.dataset.m==='help'){ closePops(); openPage('help','Stundenplan'); }
 });
 $('gotoDate').addEventListener('change', e=>{ const v = e.target.value; if(!v) return; const [y,m,d] = v.split('-').map(Number); const dt = new Date(y,m-1,d); start = NV===5 ? mondayOf(dt) : nextSchoolDay(dt); render(); });
 
@@ -762,7 +820,7 @@ function openLesson(l0, dt){
   $('lbody').classList.toggle('canc', l.st==='cancel');
   $('lent')?.remove();
   if(l.st==='cancel') $('lbody').insertAdjacentHTML('afterend','<div class="entf" id="lent">ENTFÄLLT</div>');
-  $('lhwn').textContent = (l.ic||[]).includes(H) ? 1 : 0;
+  $('lhwl').hidden = true; showHW();
   $('lsheet').scrollTop = 0;
   openSheet($('lsheet'));
 }
@@ -771,7 +829,21 @@ $('lessons').addEventListener('click', e=>{
   const el = e.target.closest('.les'); if(!el) return;
   const s = shown[+el.dataset.i]; openLesson(s.l0, s.dt);
 });
-$('lhw').addEventListener('click', ()=>toast($('lhwn').textContent==='0'?'Keine Hausaufgaben':'Hausaufgaben: siehe Unterricht'));
+function showHW(){
+  const k = keyOf(curLesson.dt, curLesson.l0), list = HW[k] || [], orig = (curLesson.l0.ic||[]).includes(H);
+  $('lhwn').textContent = list.length + (orig?1:0);
+  $('lhwl').innerHTML = (orig?'<div class="hwi"><span>Im Unterricht besprochen</span></div>':'') + list.map((t,i)=>`<div class="hwi"><span>${esc(t)}</span><button data-hdel="${i}">Löschen</button></div>`).join('') +
+    `<div class="hwadd"><input id="hwIn" placeholder="Neue Hausaufgabe" autocomplete="off"><button id="hwGo">Hinzufügen</button></div>`;
+}
+$('lhw').addEventListener('click', ()=>{ $('lhwl').hidden = !$('lhwl').hidden; if(!$('lhwl').hidden){ showHW(); setTimeout(()=>$('lhwl').scrollIntoView({block:'nearest'}),50); } });
+$('lhwl').addEventListener('click', e=>{
+  const k = keyOf(curLesson.dt, curLesson.l0);
+  if(e.target.id==='hwGo'){ const t = $('hwIn').value.trim(); if(!t) return; (HW[k] = HW[k]||[]).push(t); }
+  else if(e.target.dataset.hdel!=null){ HW[k].splice(+e.target.dataset.hdel,1); if(!HW[k].length) delete HW[k]; }
+  else return;
+  store.set('sp_hw',HW); showHW(); render();
+});
+$('lhwl').addEventListener('keydown', e=>{ if(e.key==='Enter' && e.target.id==='hwIn') $('hwGo').click(); });
 const PI = {
   cancel:'<svg class="pi" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/><path d="M4.5 15.5l11-11"/></svg>',
   change:'<svg class="pi" viewBox="0 0 20 20"><path d="M3 7h12l-3-3M17 13H5l3 3"/></svg>',
@@ -858,7 +930,9 @@ function ownMsgs(){
     return M(o.id,'in',o.req?'req':'my',esc(o.n),dtOf(o.ts),esc(cut(o.su||'(kein Betreff)',30)),esc(cut(one,32)),{un:1,clip:o.clip?1:0,body:o.body,full:o.su||'(kein Betreff)',ini:o.ini});
   });
 }
-const allMsgs = () => [...ownMsgs(), ...MSGS];
+let OUT = store.get('sp_outbox',[]);   /* messages you wrote with + (Gesendet / Entwürfe), only on this phone */
+const outMsgs = () => OUT.slice().sort((a,b)=>b.ts-a.ts).map(o=>M(o.id,o.f,'',esc(o.n),dtOf(o.ts),esc(cut(o.su||'(kein Betreff)',30)),esc(cut(o.body.replace(/\s+/g,' ').trim(),32)),{body:o.body,full:o.su||'(kein Betreff)',out:1}));
+const allMsgs = () => [...ownMsgs(), ...outMsgs(), ...MSGS];
 let READ = new Set(store.get('sp_read',[])), mf = 'in', mq = '';
 const unread = m => m.un && !READ.has(m.id);
 const CLIP = '<svg class="clip" viewBox="0 0 24 24"><path d="M20 11.5l-8 8a5 5 0 01-7-7l8.5-8.5a3.3 3.3 0 014.7 4.7l-8.4 8.4a1.7 1.7 0 01-2.4-2.4l7.6-7.6"/></svg>';
@@ -884,10 +958,11 @@ function renderMsgs(){
 $('mtabs').addEventListener('click', e=>{ const b = e.target.closest('button'); if(!b) return; mf = b.dataset.f; document.querySelectorAll('#mtabs button').forEach(x=>x.classList.toggle('on',x===b)); renderMsgs(); });
 $('msearch').addEventListener('click', ()=>{ $('sbox').classList.toggle('on'); if($('sbox').classList.contains('on')) $('sq').focus(); else { mq=''; $('sq').value=''; renderMsgs(); } });
 $('sq').addEventListener('input', e=>{ mq = e.target.value; renderMsgs(); });
-$('mplus').addEventListener('click', ()=>toast('Neue Mitteilung ist hier nicht verfügbar'));
+$('mplus').addEventListener('click', ()=>openCompose());
 $('mbody').addEventListener('click', e=>{
   const b = e.target.closest('.msg'); if(!b) return;
   const m = allMsgs().find(x=>x.id===b.dataset.id);
+  if(m.out && m.f==='draft'){ openCompose(OUT.find(o=>o.id===m.id)); return; }
   READ.add(m.id); store.set('sp_read',[...READ]); renderMsgs();
   $('mvc').innerHTML = `<div class="who">${avHTML(m)}<div><div style="font-size:${U(16)}">${m.f==='sent'?'An: ':''}${m.n}</div><div class="meta">${m.dt}</div></div></div><h2>${m.body!=null ? esc(m.full) : m.su.replace(/\.\.\.$/,'…')}</h2><p>${m.body!=null ? esc(m.body).replace(/\n/g,'<br>') : (m.pv||'').replace(/\.\.\.$/,'…')}</p>${m.clip?'<p class="meta" style="margin-top:12px">📎 Anhang</p>':''}`;
   $('mview').classList.add('on');
@@ -953,10 +1028,93 @@ $('cok').addEventListener('click',()=>{ if(!$('cok').classList.contains('on')) r
 document.querySelectorAll('[data-act]').forEach(el=>el.addEventListener('click',()=>{
   const a = el.dataset.act;
   if(a==='set') openSet(); else if(a==='contact') openContact();
+  else if(PAGES[a]) openPage(a);
+  else if(a==='logout') ask('Abmelden', 'Möchtest du dich wirklich abmelden?', 'Abmelden', logout);
   else if(a==='about'){ const sa=navigator.standalone||matchMedia('(display-mode: standalone)').matches;
     toast('v9 · '+innerHeight+'/'+screen.height+' · top '+$('probe').offsetHeight+' · app '+$('app').offsetHeight+(sa?' · HS':' · Safari')); }
   else toast('Nicht verfügbar');
 }));
+
+/* ---------- sub pages (Start / Profil / Hilfe / neue Mitteilung) ---------- */
+const fmtD = k => { const [y,m,d] = k.split('-'); return `${d}.${m}.${y}`; };
+const teacherNames = () => [...new Set([...Object.entries(TEACH).map(([c,n])=>`${n} (${c})`), ...MSGS.filter(m=>m.f==='in'&&m.n!=='admin-bn').map(m=>m.n)])].sort((a,b)=>a.localeCompare(b,'de'));
+let ABS = store.get('sp_abs',[]);
+const PAGES = {
+  termine:{t:'Meine Termine', h:()=>`<div class="empty">Keine Termine</div>`},
+  sprech:{t:'Sprechstunden', h:()=>`<div class="gap"></div><div class="card">${teacherNames().map(n=>`<div class="prow"><div class="t"><b>${esc(n)}</b><span>Nach Vereinbarung</span></div></div>`).join('')}</div>`},
+  abw:{t:'Meine Abwesenheiten', h:()=>{
+    const l = ABS.slice().sort((a,b)=>b.f.localeCompare(a.f));
+    return l.length ? `<div class="gap"></div><div class="card">${l.map(a=>`<div class="prow"><div class="t"><b>${fmtD(a.f)}${a.t&&a.t!==a.f?' – '+fmtD(a.t):''}</b><span>${esc(a.r||'Ohne Angabe')}</span></div><div class="r"><span class="${a.e?'chipok':'chipno'}">${a.e?'entschuldigt':'nicht entschuldigt'}</span></div></div>`).join('')}</div>` : `<div class="empty">Keine Abwesenheiten</div>`;
+  }},
+  kal:{t:'Schuljahreskalender', h:()=>`<div class="gap"></div><div class="card">${HOL.map(h=>`<div class="prow"><div class="t"><b>${esc(h[2]||'Schulfrei')}</b><span>${h[0]===h[1]?fmtD(h[0]):fmtD(h[0])+' – '+fmtD(h[1])}</span></div></div>`).join('')}</div>`},
+  help:{t:'Hilfe', back:'Stundenplan', h:()=>`<div class="ptext">
+    <h3>Wochen wechseln</h3>Wische im Stundenplan nach links oder rechts. Tippe auf „KW“ oben links, um zur aktuellen Woche zurückzukehren.
+    <h3>Ansicht</h3>Über ⋮ oben rechts wählst du Tag, 2 Tage, 3 Tage oder Woche, oder springst zu einem Datum.
+    <h3>Stunden-Details</h3>Tippe auf eine Stunde, um Raum, Lehrer*in und Hausaufgaben zu sehen. Unter „Hausaufgaben“ kannst du eigene Aufgaben eintragen.
+    <h3>Entfall &amp; Vertretung</h3>In den Stunden-Details über ⋮ eine Stunde als Entfall oder Vertretung markieren. Ein- und ausschalten unter Profil → Einstellungen.
+    <h3>Mitteilungen</h3>Mit + schreibst du eine Mitteilung. Mitteilungen von Lehrer*innen und Abwesenheiten trägst du unter Profil → Einstellungen ein.</div>`},
+  pw:{t:'Passwort ändern', back:'Profil', h:()=>`<div class="gap"></div><div class="card">
+      <div class="fld"><label for="pw0">Aktuell</label><input id="pw0" type="password" autocomplete="off"></div>
+      <div class="fld"><label for="pw1">Neu</label><input id="pw1" type="password" autocomplete="off"></div>
+      <div class="fld"><label for="pw2">Wiederholen</label><input id="pw2" type="password" autocomplete="off"></div></div>
+    <div class="hint">Mindestens 8 Zeichen.</div><button class="save" id="pwGo">Speichern</button>`,
+    init(){ $('pwGo').onclick = ()=>{ const a=$('pw0').value, b=$('pw1').value, c=$('pw2').value;
+      if(!a||!b) return toast('Bitte alle Felder ausfüllen'); if(b.length<8) return toast('Mindestens 8 Zeichen'); if(b!==c) return toast('Passwörter stimmen nicht überein');
+      closePage(); toast('Passwort geändert'); }; }},
+  compose:{t:'Neue Mitteilung', back:'Zurück', h:()=>`<div class="gap"></div><div class="card">
+      <div class="fld"><label for="cpT">An</label><select id="cpT">${teacherNames().map(n=>`<option>${esc(n)}</option>`).join('')}</select></div>
+      <div class="fld"><label for="cpS">Betreff</label><input id="cpS" autocomplete="off" placeholder="Betreff"></div>
+      <div class="fld ta"><label for="cpB">Nachricht</label><textarea id="cpB" placeholder="Nachricht"></textarea></div></div>
+    <div class="btnrow"><button class="save sec" id="cpD" style="color:#cfd2d7">Als Entwurf</button><button class="save" id="cpGo">Senden</button></div>
+    <div id="cpDelW"></div>`}
+};
+let composing = null;
+function openPage(k, from){
+  const p = PAGES[k];
+  $('ptitle').textContent = p.t; $('pbackt').textContent = from || p.back || (curTab==='prof'?'Profil':'Start');
+  $('pbody').innerHTML = p.h(); $('pview').scrollTop = 0; $('pview').classList.add('on');
+  if(p.init) p.init();
+}
+function closePage(){ $('pview').classList.remove('on'); }
+$('pback').addEventListener('click', closePage);
+function openCompose(o){
+  composing = o || null; openPage('compose');
+  if(o){ $('cpT').value = o.n; $('cpS').value = o.su; $('cpB').value = o.body;
+    $('cpDelW').innerHTML = '<button class="save sec" id="cpX">Entwurf löschen</button>';
+    $('cpX').onclick = ()=>{ OUT = OUT.filter(x=>x.id!==o.id); store.set('sp_outbox',OUT); renderMsgs(); closePage(); toast('Entwurf gelöscht'); }; }
+  const save = f => { const n=$('cpT').value, su=$('cpS').value.trim(), body=$('cpB').value.trim();
+    if(!su && !body) return toast('Betreff oder Nachricht eingeben');
+    OUT = OUT.filter(x=>!composing || x.id!==composing.id);
+    OUT.push({id:'o'+Date.now(), f, n, su, body, ts:Date.now()}); store.set('sp_outbox',OUT);
+    renderMsgs(); closePage(); toast(f==='sent'?'Mitteilung gesendet':'Entwurf gespeichert'); };
+  $('cpGo').onclick = ()=>save('sent'); $('cpD').onclick = ()=>save('draft');
+}
+/* absences in settings */
+function renderAbs(){
+  const l = ABS.slice().sort((a,b)=>b.f.localeCompare(a.f));
+  $('absWrap').innerHTML = l.length ? `<div class="lbl">Deine Abwesenheiten</div><div class="card">${l.map(a=>`<div class="own"><div class="t"><b>${fmtD(a.f)}${a.t&&a.t!==a.f?' – '+fmtD(a.t):''}</b><span>${esc(a.r||'Ohne Angabe')} · ${a.e?'entschuldigt':'nicht entschuldigt'}</span></div><button data-adel="${a.id}">Löschen</button></div>`).join('')}</div>` : '';
+}
+$('aAdd').addEventListener('click', ()=>{
+  const f = $('aF').value, t = $('aT').value || f;
+  if(!f) return toast('Datum „Von“ auswählen');
+  ABS.push({id:'a'+Date.now(), f: t<f?t:f, t: t<f?f:t, r:$('aR').value.trim(), e:$('aE').checked}); store.set('sp_abs',ABS);
+  $('aF').value=''; $('aT').value=''; $('aR').value=''; $('aE').checked = true; renderAbs(); toast('Abwesenheit hinzugefügt');
+});
+$('absWrap').addEventListener('click', e=>{ const b = e.target.closest('[data-adel]'); if(!b) return; ABS = ABS.filter(a=>a.id!==b.dataset.adel); store.set('sp_abs',ABS); renderAbs(); toast('Gelöscht'); });
+renderAbs();
+/* confirm dialog + log out / fake log in (nothing is sent anywhere or saved, any input works) */
+function ask(h, p, yes, fn){ $('dlgh').textContent = h; $('dlgp').textContent = p; $('dlgyes').textContent = yes; $('dlg').classList.add('on');
+  $('dlgyes').onclick = ()=>{ $('dlg').classList.remove('on'); fn(); }; $('dlgno').onclick = ()=>$('dlg').classList.remove('on'); }
+function logout(){ store.set('sp_loggedout',true); showLogin(); }
+function showLogin(){ $('lgU').value=''; $('lgP').value=''; $('lgGo').classList.remove('ok'); $('login').classList.add('on'); }
+['lgU','lgP'].forEach(i=>$(i).addEventListener('input',()=>$('lgGo').classList.toggle('ok', !!($('lgU').value.trim() && $('lgP').value))));
+$('lgGo').addEventListener('click', ()=>{
+  if(!($('lgU').value.trim() && $('lgP').value)) return;
+  $('lgP').value = ''; $('login').classList.remove('on'); store.set('sp_loggedout',false);
+  setTab(document.querySelector('.tab[data-t=plan]'));
+});
+$('lgP').addEventListener('keydown', e=>{ if(e.key==='Enter') $('lgGo').click(); });
+if(store.get('sp_loggedout',false)) showLogin();
 
 /* ---------- tabs ---------- */
 const pill = $('pill'); let curTab = 'plan';
@@ -967,7 +1125,7 @@ function setTab(btn){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on', b===btn));
   const pw = PILL[curTab]; pill.style.left = U(pw[0]); pill.style.width = U(pw[1]);
   Object.entries(VIEWS).forEach(([k,id])=>$(id).classList.toggle('on', k===curTab));
-  setv.classList.remove('on'); $('mview').classList.remove('on');
+  setv.classList.remove('on'); $('mview').classList.remove('on'); $('pview').classList.remove('on');
   $('chead').classList.toggle('on', curTab==='start' && $('vstart').scrollTop>50);
   closePops();
 }
