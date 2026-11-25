@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#300b2c">
+<meta name="theme-color" content="#000000">
 <title>Stundenplan</title>
 <meta name="apple-mobile-web-app-title" content="Stundenplan">
 <link rel="manifest" href="manifest.webmanifest">
@@ -23,18 +23,18 @@ LAYOUT: every size in units of a 393pt-wide phone (n = phone points), scaled to 
 /* home-screen app: iOS draws its own black status bar, so no extra top gap */
 @media (display-mode: standalone){:root{--top:env(safe-area-inset-top,0px)}}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{background:#300b2c;height:100%;overscroll-behavior:none}
+html,body{background:#000000;height:100%;overscroll-behavior:none}
 /* solid black behind the iPhone status bar, so iOS shows plain black there instead of blurring the page */
-#sbar{position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top,0px) + calc(var(--u)*52));background:#300b2c;z-index:0;pointer-events:none}
+#sbar{position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top,0px) + calc(var(--u)*52));background:#000000;z-index:0;pointer-events:none}
 #app{z-index:1}
 #probe{position:fixed;top:0;left:0;width:0;height:env(safe-area-inset-top,0px);visibility:hidden}
 body{font-family:-apple-system,"SF Pro Text",system-ui,Roboto,"Helvetica Neue",sans-serif;color:#eef0f3;overflow:hidden;-webkit-user-select:none;user-select:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-#app{position:absolute;top:0;left:0;right:0;width:min(100vw,480px);height:var(--apph,100%);margin:0 auto;background:#300b2c;overflow:hidden;overflow:clip}
+#app{position:absolute;top:0;left:0;right:0;width:min(100vw,480px);height:var(--apph,100%);margin:0 auto;background:#000000;overflow:hidden;overflow:clip}
 /* ---------- timetable ---------- */
 #vplan{position:absolute;inset:0;display:flex;flex-direction:column;background:#1d1e21;touch-action:pan-y}
 .pn{position:absolute;top:0;bottom:0;width:100%;contain:layout paint}
-header{background:#300b2c;flex:none;position:relative;z-index:3;padding-top:var(--top)}
+header{background:#000000;flex:none;position:relative;z-index:3;padding-top:var(--top)}
 .top{height:calc(var(--u)*44);display:flex;align-items:center;justify-content:center;position:relative}
 .name{font-size:calc(var(--u)*17.3);color:#e2e4e8;display:flex;align-items:center;gap:calc(var(--u)*6)}
 .name svg{width:calc(var(--u)*13);height:calc(var(--u)*13)}
@@ -43,7 +43,7 @@ header{background:#300b2c;flex:none;position:relative;z-index:3;padding-top:var(
 .dots{display:flex;flex-direction:column;gap:calc(var(--u)*2.6)}
 .dots i{display:block;width:calc(var(--u)*4.3);height:calc(var(--u)*4.3);border-radius:50%;background:#d4d6da}
 .weekrow{height:calc(var(--u)*50);position:relative;overflow:hidden}
-.kw{position:absolute;left:calc(var(--u)*5);top:calc(var(--u)*8.3);width:calc(var(--u)*42);z-index:1;background:#300b2c}
+.kw{position:absolute;left:calc(var(--u)*5);top:calc(var(--u)*8.3);width:calc(var(--u)*42);z-index:1;background:#000000}
 .kw b{display:block;font-weight:400;font-size:calc(var(--u)*11.3);color:#d0d2d6;line-height:calc(var(--u)*16)}
 .kw strong{display:block;font-size:calc(var(--u)*16.5);font-weight:600;color:#e6e8ec;line-height:calc(var(--u)*21)}
 .days{position:absolute;inset:0;will-change:transform;backface-visibility:hidden}
@@ -86,7 +86,7 @@ header{background:#300b2c;flex:none;position:relative;z-index:3;padding-top:var(
 .fer span{font-size:calc(var(--u)*12);line-height:calc(var(--u)*13);margin-top:calc(var(--u)*6)}
 .fer span+span{margin-top:0}
 /* ---------- generic pages ---------- */
-.view{position:absolute;inset:0;z-index:4;background:#300b2c;overflow-y:auto;display:none;padding-top:var(--top);padding-bottom:calc(var(--u)*120);-webkit-overflow-scrolling:touch}
+.view{position:absolute;inset:0;z-index:4;background:#000000;overflow-y:auto;display:none;padding-top:var(--top);padding-bottom:calc(var(--u)*120);-webkit-overflow-scrolling:touch}
 .view.on{display:block}
 .vt{height:calc(var(--u)*44);display:flex;align-items:center;justify-content:center;font-size:calc(var(--u)*17.3);font-weight:600;color:#d6dbe2;position:relative}
 .card{margin:0 calc(var(--u)*16.7);background:#1c1c1e;border-radius:calc(var(--u)*28);overflow:hidden}
@@ -142,7 +142,7 @@ header{background:#300b2c;flex:none;position:relative;z-index:3;padding-top:var(
 .info .x{position:absolute;right:calc(var(--u)*10);top:calc(var(--u)*10);width:calc(var(--u)*24);height:calc(var(--u)*24);border-radius:50%;background:#7c8896;display:grid;place-items:center}
 .info .x svg{width:calc(var(--u)*10);height:calc(var(--u)*10);stroke:#fff;stroke-width:2.2}
 /* messages */
-.mhead{position:sticky;top:calc(-1 * var(--top));z-index:2;background:#300b2c;padding-top:var(--top);margin-top:calc(-1 * var(--top))}
+.mhead{position:sticky;top:calc(-1 * var(--top));z-index:2;background:#000000;padding-top:var(--top);margin-top:calc(-1 * var(--top))}
 .mtop{height:calc(var(--u)*44);display:flex;align-items:center;justify-content:center;position:relative;font-size:calc(var(--u)*17.3);font-weight:600;color:#d6dbe2}
 .mtop .rbtn{background:#1c1c1e;border:1px solid #2c2c2f}
 .mtop .rbtn svg{width:calc(var(--u)*24);height:calc(var(--u)*24);fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
@@ -152,7 +152,7 @@ header{background:#300b2c;flex:none;position:relative;z-index:3;padding-top:var(
 .search{display:none;margin:0 calc(var(--u)*16.7) calc(var(--u)*12)}
 .search.on{display:block}
 .search input{width:100%;height:calc(var(--u)*38);border-radius:calc(var(--u)*12);border:0;background:#1c1c1e;color:#fff;font-size:16px;padding:0 calc(var(--u)*12);outline:none}
-.shd{font-size:calc(var(--u)*15);color:#c4c8ce;padding:calc(var(--u)*10) calc(var(--u)*16.7) calc(var(--u)*9);background:#300b2c}
+.shd{font-size:calc(var(--u)*15);color:#c4c8ce;padding:calc(var(--u)*10) calc(var(--u)*16.7) calc(var(--u)*9);background:#000000}
 .shd.big{padding-top:calc(var(--u)*28)}
 .mlist{background:#1c1c1e}
 .msg{display:flex;position:relative;padding:calc(var(--u)*12) calc(var(--u)*16.3) calc(var(--u)*12) calc(var(--u)*32);min-height:calc(var(--u)*93.3);cursor:pointer;text-align:left;width:100%}
