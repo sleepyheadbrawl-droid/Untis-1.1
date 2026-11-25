@@ -251,6 +251,11 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
 #gotoDate{position:absolute;right:calc(var(--u)*40);top:calc(var(--top) + calc(var(--u)*30));width:1px;height:1px;opacity:0;border:0}
 @media(min-width:481px){html,body{background:#0b0b0c}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* wallpaper: the 'un' picture, dimmed so the timetable stays readable */
+:root{--wall:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url(bg.jpg) center/cover no-repeat}
+html,body,#app{background:var(--wall);background-color:#000}
+#vplan{background:var(--wall);background-color:#1d1e21}
+.view{background:var(--wall);background-color:#000}
 </style>
 </head>
 <body><div id="sbar"></div><div id="probe"></div>
