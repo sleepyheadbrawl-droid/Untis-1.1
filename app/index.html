@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#000000">
 <title>Stundenplan</title>
 <meta name="apple-mobile-web-app-title" content="Stundenplan">
@@ -27,6 +27,7 @@ html,body{background:#000000;height:100%;overscroll-behavior:none}
 /* solid black behind the iPhone status bar, so iOS shows plain black there instead of blurring the page */
 #sbar{position:fixed;top:0;left:0;right:0;height:calc(env(safe-area-inset-top,0px) + calc(var(--u)*52));background:#000000;z-index:0;pointer-events:none}
 #app{z-index:1}
+#scover{position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#000;z-index:100;pointer-events:none}
 #probe{position:fixed;top:0;left:0;width:0;height:env(safe-area-inset-top,0px);visibility:hidden}
 body{font-family:-apple-system,"SF Pro Text",system-ui,Roboto,"Helvetica Neue",sans-serif;color:#eef0f3;overflow:hidden;-webkit-user-select:none;user-select:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -253,7 +254,7 @@ nav{position:absolute;z-index:5;left:calc(var(--u)*23.5);width:calc(var(--u)*348
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
-<body><div id="sbar"></div><div id="probe"></div>
+<body><div id="sbar"></div><div id="probe"></div><div id="scover"></div>
 <div id="app">
 
   <!-- ============ STUNDENPLAN ============ -->
