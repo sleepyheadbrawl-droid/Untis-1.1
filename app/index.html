@@ -571,8 +571,9 @@ function render(){
 
 /* ---------- swipe between weeks/days ---------- */
 const layers = () => [$('days'), $('lessons')];
-let sx=null, sy=0, dx=0, drag=null, busy=false, vx=0, lx=0, lt=0, settle=null;
-const setX = (x, anim, ms) => layers().forEach(el=>{ el.style.transition = anim?`transform ${ms||300}ms cubic-bezier(.2,.7,.2,1)`:'none'; el.style.transform = `translate3d(${x}px,0,0)`; });
+let sx=null, sy=0, dx=0, drag=null, busy=false, vx=0, lx=0, lt=0, settle=null, ox=0;
+const EASE = 'cubic-bezier(.22,1,.36,1)';   /* long soft deceleration, like iOS */
+const setX = (x, anim, ms) => layers().forEach(el=>{ el.style.transition = anim?`transform ${ms||320}ms ${EASE}`:'none'; el.style.transform = `translate3d(${x}px,0,0)`; });
 /* the neighbour pane that will slide in is built while the slide runs (the transform animation runs on the compositor, so it stays smooth);
    at the end the panes are only rotated, not rebuilt */
 let pre = null;
@@ -583,44 +584,61 @@ function buildPre(dir){
   return pre;
 }
 const nextStart2 = (st, dir) => NV===5 ? addD(st,7*dir) : addSchoolDays(st,NV*dir);
+/* put the incoming pane into the DOM while the slide animates (the slide runs on the compositor, so this costs no visible frames) */
+function prepare(dir){
+  const b = buildPre(dir);
+  if(!b.ins){
+    b.ins = true;
+    const htm = [b.p.dh, b.p.h];
+    layers().forEach((el,i)=>{ if(dir>0) el.insertAdjacentHTML('beforeend', PANE(2,htm[i])); else el.insertAdjacentHTML('afterbegin', PANE(-2,htm[i])); });
+  }
+  return b;
+}
 function rotate(dir){
-  const b = buildPre(dir); pre = null;
+  const b = prepare(dir); pre = null;
   start = b.st;
-  const els = layers(), htm = [b.p.dh, b.p.h];
-  els.forEach((el,i)=>{
+  layers().forEach(el=>{
     const k = el.children;
-    if(dir>0){ k[0].remove(); k[0].style.left='-100%'; k[1].style.left='0%'; el.insertAdjacentHTML('beforeend', PANE(1,htm[i])); }
-    else { k[2].remove(); k[1].style.left='100%'; k[0].style.left='0%'; el.insertAdjacentHTML('afterbegin', PANE(-1,htm[i])); }
+    if(dir>0){ k[0].remove(); k[0].style.left='-100%'; k[1].style.left='0%'; k[2].style.left='100%'; }
+    else { k[3].remove(); k[0].style.left='-100%'; k[1].style.left='0%'; k[2].style.left='100%'; }
   });
   setHead(daysFrom(start));
 }
-function finishNow(){ if(!settle) return; clearTimeout(settle.t); const d = settle.dir; settle = null; rotate(d); setX(0,false); busy=false; }
+const curX = () => { const m = getComputedStyle($('lessons')).transform; return (!m || m==='none') ? 0 : new DOMMatrix(m).m41; };
+function finishNow(keep){
+  if(!settle) return 0;
+  const d = settle.dir, W = $('app').clientWidth, cx = keep ? curX() : 0;
+  clearTimeout(settle.t); $('lessons').removeEventListener('transitionend', settle.onEnd); settle = null;
+  rotate(d);
+  const nx = keep ? cx + d*W : 0;       /* panes moved by one page, so shift the layer by the same amount: nothing jumps */
+  setX(nx,false); busy=false; return nx;
+}
 /* fly to the neighbouring week from wherever the finger let go, then rotate the panes in the same frame (no second slide-in) */
 function go(dir, fromX=0, vel=0){
   if(busy) return; busy = true;
   const W = $('app').clientWidth, dist = Math.max(W - Math.abs(fromX), 1);
-  const ms = Math.round(Math.min(340, Math.max(170, dist / Math.max(Math.abs(vel), .9))));
+  const ms = Math.round(Math.min(460, Math.max(300, dist / Math.max(Math.abs(vel), .7) * 1.1)));
   setX(-dir*W, true, ms);
-  settle = {dir, t:setTimeout(finishNow, ms+80)};
-  const lel = $('lessons'); const onEnd = e => { if(e.target!==lel) return; lel.removeEventListener('transitionend', onEnd); finishNow(); };
+  const lel = $('lessons'); const onEnd = e => { if(e.target===lel) finishNow(); };
+  settle = {dir, onEnd, t:setTimeout(finishNow, ms+120)};
   lel.addEventListener('transitionend', onEnd);
-  setTimeout(()=>{ if(settle && settle.dir===dir) buildPre(dir); }, 40);
+  setTimeout(()=>{ if(settle && settle.dir===dir) prepare(dir); }, 30);
 }
 const release = () => {
   const W = $('app').clientWidth;
   if(Math.abs(dx) > W*.22 || (Math.abs(vx) > .45 && Math.abs(dx) > 18)) go((Math.abs(vx)>.45 ? vx<0 : dx<0) ? 1 : -1, dx, vx);
-  else setX(0,true,260);
+  else setX(0,true,320);
 };
 const track = x => { const t = performance.now(); if(lt && t>lt){ const v = (x-lx)/(t-lt); vx = vx*.6 + v*.4; } lx = x; lt = t; };
 const plan = $('vplan');
-plan.addEventListener('touchstart', e=>{ if(settle) finishNow(); if(busy){ sx=null; return; } const t=e.touches[0]; sx=t.clientX; sy=t.clientY; dx=0; vx=0; lx=t.clientX; lt=performance.now(); drag=null; },{passive:true});
+plan.addEventListener('touchstart', e=>{ ox=0; if(settle) ox=finishNow(true); if(busy){ sx=null; return; } const t=e.touches[0]; sx=t.clientX; sy=t.clientY; dx=ox; vx=0; lx=t.clientX; lt=performance.now(); drag=null; },{passive:true});
 plan.addEventListener('touchmove', e=>{
   if(busy||sx===null) return; const t=e.touches[0]; const ddx=t.clientX-sx, ddy=t.clientY-sy;
   if(drag===null && (Math.abs(ddx)>8||Math.abs(ddy)>8)){ drag = Math.abs(ddx)>Math.abs(ddy); if(drag){ sx = t.clientX; lx = t.clientX; lt = performance.now(); vx = 0; } return; }
-  if(drag){ e.preventDefault(); dx=t.clientX-sx; track(t.clientX); setX(dx,false); }
+  if(drag){ e.preventDefault(); dx=ox+t.clientX-sx; track(t.clientX); setX(dx,false); }
 },{passive:false});
-plan.addEventListener('touchend', ()=>{ if(drag) release(); drag=null; sx=null; });
-plan.addEventListener('touchcancel', ()=>{ if(drag) setX(0,true,260); drag=null; sx=null; });
+plan.addEventListener('touchend', ()=>{ if(drag||ox) release(); drag=null; sx=null; ox=0; });
+plan.addEventListener('touchcancel', ()=>{ if(drag||ox) release(); drag=null; sx=null; ox=0; });
 let mdown=null, justDragged=false;
 plan.addEventListener('mousedown', e=>{ finishNow(); mdown={x:e.clientX,moved:false}; dx=0; vx=0; lx=e.clientX; lt=performance.now(); });
 window.addEventListener('mousemove', e=>{ if(!mdown||busy) return; const d=e.clientX-mdown.x; if(Math.abs(d)>8){ mdown.moved=true; dx=d; track(e.clientX); setX(d,false);} });
